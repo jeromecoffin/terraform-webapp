@@ -21,7 +21,7 @@ variable "subnet_ip_range" {
   default = "10.1.0.0/24"
 }
 
-variable "sg_inbound_ports" {
+variable "sg_inbound_vpn_prod" {
   description = "Security group inbound ports"
   type        = list(number)
   default     = [80, 443, 722, 9090]

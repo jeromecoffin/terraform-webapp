@@ -58,3 +58,27 @@ resource "outscale_internet_service_link" "is_link_1" {
   net_id              = outscale_net.vpc_DSNA.net_id
   internet_service_id = outscale_internet_service.is_DSNA.id
 }
+
+resource "outscale_public_ip" "eip_bastion" {
+  tags {
+    key   = "name"
+    value = "DSNA_bastion"
+  }
+}
+
+resource "outscale_public_ip_link" "eip_bastion_link" {
+  vm_id     = outscale_vm.scdsnabastion[0].vm_id
+  public_ip = outscale_public_ip.eip_bastion.public_ip
+}
+
+resource "outscale_public_ip" "eip_rancher" {
+  tags {
+    key   = "name"
+    value = "DSNA_rancher"
+  }
+}
+
+resource "outscale_public_ip_link" "eip_rancher_link" {
+  vm_id     = outscale_vm.scdsnarancher[0].vm_id
+  public_ip = outscale_public_ip.eip_rancher.public_ip
+}

@@ -12,11 +12,11 @@ resource "outscale_security_group_rule" "sg_rule_0" {
 }
 
 resource "outscale_security_group_rule" "sg_rule_inbound" {
-  count             = length(var.sg_inbound_ports)
+  count             = length(var.sg_inbound_vpn_prod)
   flow              = "Inbound"
   security_group_id = outscale_security_group.sg_DSNA.security_group_id
-  from_port_range   = var.sg_inbound_ports[count.index]
-  to_port_range     = var.sg_inbound_ports[count.index]
+  from_port_range   = var.sg_inbound_vpn_prod[count.index]
+  to_port_range     = var.sg_inbound_vpn_prod[count.index]
   ip_protocol       = "tcp"
   ip_range          = "51.15.190.162/32"
 }
