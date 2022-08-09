@@ -11,7 +11,7 @@ resource "outscale_vm" "scdsnabastion" {
   private_ips                    = ["10.1.0.5"]
   tags {
     key   = "name"
-    value = "scdsnabastion"
+    value = "scdsnabastion${count.index}"
   }
 }
 
@@ -79,6 +79,6 @@ resource "outscale_vm" "scdsnarancher" {
   private_ips                    = ["10.1.0.6"]
   tags {
     key   = "name"
-    value = "scdsnarancher"
+    value = "scdsnarancher${count.index}"
   }
 }

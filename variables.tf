@@ -22,19 +22,11 @@ variable "subnet_ip_range" {
 }
 
 variable "sg_inbound_ports" {
-  description = "Security groups inbound ports"
+  description = "Security group inbound ports"
   type        = list(number)
   default     = [80, 443, 722, 9090]
 }
-/*
-bastion {
-    nb_vm         = 1
-    image_id      = "ami-c4255476"
-    vm_type       = "tinav3.c1r2p3"
-    volume_per_vm = 1
-  }
-}
-*/
+
 variable "nb_bastion" {
   default = 1
 }
@@ -47,12 +39,16 @@ variable "bastion_vm_type" {
   default = "tinav3.c1r2p3"
 }
 
+variable "nb_volume_per_bastion" {
+  default = 1
+}
+
 variable "nb_storage" {
   default = 3
 }
 
 variable "nb_volume_per_storage" {
-  default = 3
+  default = 6
 }
 
 variable "storage_image_id" {
@@ -66,12 +62,17 @@ variable "storage_vm_type" {
 variable "nb_db" {
   default = 1
 }
+
 variable "db_image_id" {
   default = "ami-c4255476"
 }
 
 variable "db_vm_type" {
   default = "tinav3.c8r20p3	"
+}
+
+variable "nb_volume_per_db" {
+  default = 1
 }
 
 variable "nb_ws" {
@@ -86,6 +87,10 @@ variable "ws_vm_type" {
   default = "tinav3.c12r62p3"
 }
 
+variable "nb_volume_per_ws" {
+  default = 1
+}
+
 variable "nb_rancher" {
   default = 1
 }
@@ -96,4 +101,8 @@ variable "rancher_image_id" {
 
 variable "rancher_vm_type" {
   default = "tinav3.c4r8p3"
+}
+
+variable "nb_volume_per_rancher" {
+  default = 2
 }
