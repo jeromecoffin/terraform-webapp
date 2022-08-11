@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+
+
 echo "[rancher]"
 i=0
 for ip in $(terraform output -json DSNA_rancher_ip | jq -r '.[]' | jq -r '.[]');

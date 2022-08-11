@@ -38,6 +38,7 @@ apply-terraform:
   when: manual
   script:
     - terraform apply -input=false "tfplan" -auto-approve
+    - /bin/bash inventory.sh > dsna.ini
   dependencies:
     - planning-terraform
   when: manual
