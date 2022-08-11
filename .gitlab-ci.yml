@@ -2,7 +2,7 @@ stages:
   - init
   - validate
   - plan
-  - deploy
+  - apply
   - destroy
 
 before_script:
@@ -41,7 +41,10 @@ apply-terraform:
     - /bin/bash inventory.sh > dsna.ini
   dependencies:
     - planning-terraform
-  when: manual
+  artifacts:
+    paths:
+      - dsna.ini
+    expire_in: 1 week
 
 destroy-terraform:
   stage: destroy
