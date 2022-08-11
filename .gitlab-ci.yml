@@ -1,0 +1,49 @@
+stages:
+  - init
+  - validate
+  - plan
+  - deploy
+  - destroy
+
+before_script:
+  - export OUTSCALE_ACCESSKEYID=${OUTSCALE_ACCESSKEYID}
+  - export OUTSCALE_SECRETKEYID=${OUTSCALE_SECRETKEYID}
+  - export TF_IN_AUTOMATION=true
+  - rm -rf .terraform
+  - terraform --version
+
+init-terraform:
+  stage: init
+  script:
+    - terraform init -input=false
+
+validate-terraform:
+  stage: validate
+  when: on_success
+  script:
+    - terraform validate -input=false
+
+planning-terraform:
+  stage: plan
+  when: on_success
+  script:
+    - terraform plan -out "tfplan" -input=false
+  artifacts:
+    paths:
+      - tfplan
+    expire_in: 1 week
+
+apply-terraform:
+  stage: apply
+  when: manual
+  script:
+    - terraform apply -input=false "tfplan" -auto-approve
+  dependencies:
+    - planning-terraform
+  when: manual
+
+destroy-terraform:
+  stage: destroy
+  when: manual
+  script:
+    - terraform destroy -input=false -auto-approve
