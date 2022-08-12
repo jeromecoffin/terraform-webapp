@@ -9,8 +9,8 @@ resource "outscale_vm" "scdsnabastion" {
   subnet_id                      = outscale_subnet.subnet_1.subnet_id
   security_group_ids             = [outscale_security_group.sg_DSNA.security_group_id]
   private_ips                    = ["10.1.0.5"]
-  #volume par défault du root, les volumes supplémentaires sont dans volumes.tf
-  block_device_mappings {
+  #volume par défault bootdisk root, les volumes supplémentaires sont dans volumes.tf
+  /*block_device_mappings {
     device_name = "/dev/sda1"
     bsu {
       volume_size           = "50"
@@ -18,7 +18,7 @@ resource "outscale_vm" "scdsnabastion" {
       volume_type           = "standard"
       delete_on_vm_deletion = "true"
     }
-  }
+  }*/
   tags {
     key   = "name"
     value = "scdsnabastion${count.index + 1}"
@@ -36,8 +36,8 @@ resource "outscale_vm" "scdsnastorage" {
   subnet_id                      = outscale_subnet.subnet_1.subnet_id
   security_group_ids             = [outscale_security_group.sg_DSNA.security_group_id]
   private_ips                    = ["10.1.0.6${count.index}"]
-  #volume par défault du root, les volumes supplémentaires sont dans volumes.tf
-  block_device_mappings {
+  #volume par défault bootdisk root, les volumes supplémentaires sont dans volumes.tf
+  /*block_device_mappings {
     device_name = "/dev/sda1"
     bsu {
       volume_size           = "50"
@@ -45,7 +45,7 @@ resource "outscale_vm" "scdsnastorage" {
       volume_type           = "standard"
       delete_on_vm_deletion = "true"
     }
-  }
+  }*/
   tags {
     key   = "name"
     value = "scdsnastorage${count.index + 1}"
@@ -63,8 +63,8 @@ resource "outscale_vm" "scdsnadb" {
   subnet_id                      = outscale_subnet.subnet_1.subnet_id
   security_group_ids             = [outscale_security_group.sg_DSNA.security_group_id]
   private_ips                    = ["10.1.0.4${count.index}"]
-  #volume par défault du root, les volumes supplémentaires sont dans volumes.tf
-  block_device_mappings {
+  #volume par défault bootdisk root, les volumes supplémentaires sont dans volumes.tf
+  /*  block_device_mappings {
     device_name = "/dev/sda1"
     bsu {
       volume_size           = "50"
@@ -72,7 +72,7 @@ resource "outscale_vm" "scdsnadb" {
       volume_type           = "standard"
       delete_on_vm_deletion = "true"
     }
-  }
+  }*/
   tags {
     key   = "name"
     value = "scdsnadb${count.index + 1}"
@@ -90,8 +90,8 @@ resource "outscale_vm" "scdsnaws" {
   subnet_id                      = outscale_subnet.subnet_1.subnet_id
   security_group_ids             = [outscale_security_group.sg_DSNA.security_group_id]
   private_ips                    = ["10.1.0.2${count.index}"]
-  #volume par défault du root, les volumes supplémentaires sont dans volumes.tf
-  block_device_mappings {
+  #volume par défault bootdisk root, les volumes supplémentaires sont dans volumes.tf
+  /*block_device_mappings {
     device_name = "/dev/sda1"
     bsu {
       volume_size           = "50"
@@ -99,7 +99,7 @@ resource "outscale_vm" "scdsnaws" {
       volume_type           = "standard"
       delete_on_vm_deletion = "true"
     }
-  }
+  }*/
   tags {
     key   = "name"
     value = "scdsnaws${count.index + 1}"
@@ -117,8 +117,8 @@ resource "outscale_vm" "scdsnarancher" {
   subnet_id                      = outscale_subnet.subnet_1.subnet_id
   security_group_ids             = [outscale_security_group.sg_DSNA.security_group_id]
   private_ips                    = ["10.1.0.6"]
-  #volume par défault du root, les volumes supplémentaires sont dans volumes.tf
-  block_device_mappings {
+  #volume par défault bootdisk root, les volumes supplémentaires sont dans volumes.tf
+  /*  block_device_mappings {
     device_name = "/dev/sda1"
     bsu {
       volume_size           = "50"
@@ -126,7 +126,7 @@ resource "outscale_vm" "scdsnarancher" {
       volume_type           = "standard"
       delete_on_vm_deletion = "true"
     }
-  }
+  }*/
   tags {
     key   = "name"
     value = "scdsnarancher${count.index + 1}"
