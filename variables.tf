@@ -68,7 +68,7 @@ variable "db_image_id" {
 }
 
 variable "db_vm_type" {
-  default = "tinav3.c8r20p3	"
+  default = "tinav3.c8r20p3"
 }
 
 variable "nb_volume_per_db" {
@@ -84,7 +84,7 @@ variable "ws_image_id" {
 }
 
 variable "ws_vm_type" {
-  default = "tinav3.c12r62p3"
+  default = "tinav3.c4r8p3"
 }
 
 variable "nb_volume_per_ws" {

@@ -2,7 +2,7 @@
 
 
 echo "[rancher]"
-i=0
+i=1
 for ip in $(terraform output -json DSNA_rancher_ip | jq -r '.[]' | jq -r '.[]');
 do
   echo "scdsnarancher$i ansible_host=$ip";
@@ -10,7 +10,7 @@ do
 done
 
 echo -e "\n[ws]"
-i=0
+i=1
 for ip in $(terraform output -json DSNA_ws_ip | jq -r '.[]' | jq -r '.[]');
 do
   echo "scdsnaws$i ansible_host=$ip";
@@ -18,7 +18,7 @@ do
 done
 
 echo -e "\n[database]"
-i=0
+i=1
 for ip in $(terraform output -json DSNA_db_ip | jq -r '.[]' | jq -r '.[]');
 do
   echo "scdsnadb$i ansible_host=$ip";
@@ -26,7 +26,7 @@ do
 done
 
 echo -e "\n[storage]"
-i=0
+i=1
 for ip in $(terraform output -json DSNA_storage_ip | jq -r '.[]' | jq -r '.[]');
 do
   echo "scdsnastorage$i ansible_host=$ip";
@@ -34,7 +34,7 @@ do
 done
 
 echo -e "\n[bastion]"
-i=0
+i=1
 for ip in $(terraform output -json DSNA_bastion_ip | jq -r '.[]' | jq -r '.[]');
 do
   echo "scdsnabastion$i ansible_host=$ip ansible_ssh_common_args=''";
