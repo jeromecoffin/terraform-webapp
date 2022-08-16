@@ -27,12 +27,18 @@ variable "sg_inbound_vpn_prod" {
   default     = [80, 443, 722, 9090]
 }
 
+variable "alphabet" {
+  description = "alphabet for device"
+  type        = list(string)
+  default     = ["b", "c", "d", "e", "f", "g"]
+}
+
 variable "nb_bastion" {
   default = 1
 }
 
 variable "bastion_image_id" {
-  default = "ami-c4255476"
+  default = "ami-6f0f9ef3"
 }
 
 variable "bastion_vm_type" {
@@ -52,7 +58,7 @@ variable "nb_volume_per_storage" {
 }
 
 variable "storage_image_id" {
-  default = "ami-c4255476"
+  default = "ami-6f0f9ef3"
 }
 
 variable "storage_vm_type" {
@@ -64,7 +70,7 @@ variable "nb_db" {
 }
 
 variable "db_image_id" {
-  default = "ami-c4255476"
+  default = "ami-6f0f9ef3"
 }
 
 variable "db_vm_type" {
@@ -80,7 +86,7 @@ variable "nb_ws" {
 }
 
 variable "ws_image_id" {
-  default = "ami-c4255476"
+  default = "ami-6f0f9ef3"
 }
 
 variable "ws_vm_type" {
@@ -96,7 +102,7 @@ variable "nb_rancher" {
 }
 
 variable "rancher_image_id" {
-  default = "ami-c4255476"
+  default = "ami-6f0f9ef3"
 }
 
 variable "rancher_vm_type" {

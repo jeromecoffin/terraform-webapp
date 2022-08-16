@@ -13,12 +13,12 @@ resource "outscale_volume" "volume_db" {
   }
 }
 
-/*resource "outscale_volumes_link" "volume_link_db" {
+resource "outscale_volumes_link" "volume_link_db" {
   count       = var.nb_volume_per_db > 1 ? length(outscale_volume.volume_db) : 0
-  device_name = ""
+  device_name = "/dev/xvd${var.alphabet[count.index % var.nb_volume_per_db]}"
   volume_id   = outscale_volume.volume_db[count.index].id
-  vm_id       = outscale_vm.scdsnadb[count.index % length(outscale_vm.scdsnadb)].id
-}*/
+  vm_id       = outscale_vm.scdsnadb[(count.index - (count.index % var.nb_volume_per_storage)) / var.nb_volume_per_db].id
+}
 
 resource "outscale_volume" "volume_storage" {
   count          = var.nb_volume_per_storage > 1 ? length(outscale_vm.scdsnastorage) * var.nb_volume_per_storage - length(outscale_vm.scdsnastorage) : 0
@@ -32,12 +32,12 @@ resource "outscale_volume" "volume_storage" {
   }
 }
 
-/*resource "outscale_volumes_link" "volume_link_storage" {
+resource "outscale_volumes_link" "volume_link_storage" {
   count       = var.nb_volume_per_storage > 1 ? length(outscale_volume.volume_storage) : 0
-  device_name = ""
+  device_name = "/dev/xvd${var.alphabet[count.index % var.nb_volume_per_storage]}"
   volume_id   = outscale_volume.volume_storage[count.index].id
-  vm_id       = outscale_vm.scdsnastorage[count.index % length(outscale_vm.scdsnastorage)].id
-}*/
+  vm_id       = outscale_vm.scdsnastorage[(count.index - (count.index % var.nb_volume_per_storage)) / var.nb_volume_per_storage].id
+}
 
 resource "outscale_volume" "volume_ws" {
   count          = var.nb_volume_per_ws > 1 ? length(outscale_vm.scdsnaws) * var.nb_volume_per_ws - length(outscale_vm.scdsnaws) : 0
@@ -51,12 +51,12 @@ resource "outscale_volume" "volume_ws" {
   }
 }
 
-/*resource "outscale_volumes_link" "volume_link_ws" {
+resource "outscale_volumes_link" "volume_link_ws" {
   count       = var.nb_volume_per_ws > 1 ? length(outscale_volume.volume_ws) : 0
-  device_name = ""
+  device_name = "/dev/xvd${var.alphabet[count.index % var.nb_volume_per_ws]}"
   volume_id   = outscale_volume.volume_ws[count.index].id
-  vm_id       = outscale_vm.scdsnaws[count.index % length(outscale_vm.scdsnaws)].id
-}*/
+  vm_id       = outscale_vm.scdsnaws[(count.index - (count.index % var.nb_volume_per_storage)) / var.nb_volume_per_ws].id
+}
 
 resource "outscale_volume" "volume_rancher" {
   count          = var.nb_volume_per_rancher > 1 ? length(outscale_vm.scdsnarancher) * var.nb_volume_per_rancher - length(outscale_vm.scdsnarancher) : 0
@@ -70,12 +70,12 @@ resource "outscale_volume" "volume_rancher" {
   }
 }
 
-/*resource "outscale_volumes_link" "volume_link_rancher" {
+resource "outscale_volumes_link" "volume_link_rancher" {
   count       = var.nb_volume_per_rancher > 1 ? length(outscale_volume.volume_rancher) : 0
-  device_name = ""
+  device_name = "/dev/xvd${var.alphabet[count.index % var.nb_volume_per_rancher]}"
   volume_id   = outscale_volume.volume_rancher[count.index].id
-  vm_id       = outscale_vm.scdsnarancher[count.index % length(outscale_vm.scdsnarancher)].id
-}*/
+  vm_id       = outscale_vm.scdsnarancher[(count.index - (count.index % var.nb_volume_per_storage)) / var.nb_volume_per_rancher].id
+}
 
 resource "outscale_volume" "volume_bastion" {
   count          = var.nb_volume_per_bastion > 1 ? length(outscale_vm.scdsnabastion) * var.nb_volume_per_bastion - length(outscale_vm.scdsnabastion) : 0
@@ -89,9 +89,9 @@ resource "outscale_volume" "volume_bastion" {
   }
 }
 
-/*resource "outscale_volumes_link" "volume_link_bastion" {
+resource "outscale_volumes_link" "volume_link_bastion" {
   count       = var.nb_volume_per_bastion > 1 ? length(outscale_volume.volume_bastion) : 0
-  device_name = ""
+  device_name = "/dev/xvd${var.alphabet[count.index % var.nb_volume_per_bastion]}"
   volume_id   = outscale_volume.volume_bastion[count.index].id
-  vm_id       = outscale_vm.scdsnabastion[count.index % length(outscale_vm.scdsnabastion)].id
-}*/
+  vm_id       = outscale_vm.scdsnabastion[(count.index - (count.index % var.nb_volume_per_storage)) / var.nb_volume_per_bastion].id
+}
