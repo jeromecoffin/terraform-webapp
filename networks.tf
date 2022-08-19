@@ -42,7 +42,7 @@ resource "outscale_route_table" "rt_DSNA" {
 
 resource "outscale_route" "route_1" {
   destination_ip_range = "0.0.0.0/0"
-  gateway_id           = outscale_internet_service.is_DSNA.internet_service_id
+  gateway_id           = outscale_nat_service.nat_DSNA.nat_service_id
   route_table_id       = outscale_route_table.rt_DSNA.route_table_id
 }
 

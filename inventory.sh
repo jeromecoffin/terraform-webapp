@@ -35,7 +35,7 @@ done
 
 echo -e "\n[bastion]"
 i=1
-for ip in $(terraform output -json DSNA_bastion_ip | jq -r '.[]' | jq -r '.[]');
+for ip in $(terraform output -json DSNA_bastion_eip);
 do
   echo "scdsnabastion$i ansible_host=$ip ansible_ssh_common_args=''";
   i=$((i+1));
@@ -43,7 +43,7 @@ done
 
 echo -e "\n[all:vars]"
 echo "env=dsna"
-echo "ansible_user=outscale"
+echo "ansible_user=jerome"
 echo "ansible_port=722"
-echo "ansible_ssh_common_args='-o ProxyCommand=\"ssh -p 722 -o StrictHostKeyChecking=no -W %h:%p -q safetyline@$ip\" -o StrictHostKeyChecking=no'"
+echo "ansible_ssh_common_args='-o ProxyCommand=\"ssh -p 722 -o StrictHostKeyChecking=no -W %h:%p -q jerome@$ip\" -o StrictHostKeyChecking=no'"
 echo "ansible_python_interpreter=/usr/bin/python3"

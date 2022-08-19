@@ -43,12 +43,12 @@ resource "outscale_route_table" "rt_BACKUP" {
 
 resource "outscale_route" "route_BACKUP" {
   destination_ip_range = "0.0.0.0/0"
-  gateway_id           = outscale_internet_service.is_BACKUP.internet_service_id
+  gateway_id           = outscale_nat_service.nat_BACKUP.nat_service_id
   route_table_id       = outscale_route_table.rt_BACKUP.route_table_id
 }
 
 resource "outscale_route_table_link" "rt_link_BACKUP" {
-  subnet_id      = outscale_subnet.subnet_1.subnet_id
+  subnet_id      = outscale_subnet.subnet_BACKUP.subnet_id
   route_table_id = outscale_route_table.rt_BACKUP.id
 }
 
@@ -92,4 +92,23 @@ resource "outscale_route" "route_DSNA_to_BACKUP" {
   destination_ip_range = "10.1.0.0/16"
   net_peering_id       = outscale_net_peering.net_peering_BACKUP.id
   route_table_id       = outscale_route_table.rt_BACKUP.route_table_id
+}
+
+resource "outscale_volume" "volume_backup" {
+  count          = 4
+  subregion_name = "${var.region}b"
+  size           = 1000
+  iops           = 150
+  volume_type    = "standard"
+  tags {
+    key   = "name"
+    value = "backup_volume${count.index + 1}"
+  }
+}
+
+resource "outscale_volumes_link" "volume_link_backup" {
+  count       = 4
+  device_name = "/dev/xvd${var.alphabet[count.index]}"
+  volume_id   = outscale_volume.volume_backup[count.index].id
+  vm_id       = outscale_vm.scdsnaBACKUP.id
 }
