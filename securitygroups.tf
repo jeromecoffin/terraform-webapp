@@ -20,7 +20,7 @@ resource "outscale_security_group_rule" "sg_rule_inbound" {
   ip_protocol       = "tcp"
   ip_range          = "51.15.190.162/32"
 }
-
+/*
 resource "outscale_security_group" "sg_BACKUP" {
   description         = "Security Group for BACKUP"
   security_group_name = "BACKUP"
@@ -45,3 +45,4 @@ resource "outscale_security_group_rule" "sg_rule_inbound_DSNA_to_BACKUP" {
   ip_protocol       = "tcp"
   ip_range          = "10.1.0.0/16"
 }
+*/
