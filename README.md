@@ -1,6 +1,6 @@
-# DSNA
+# WEBAPP
 
-Infrastructure as Code for DSNA on Outscale
+Infrastructure as Code for WEBAPP on Outscale
 
 ## Getting started
 
