@@ -4,11 +4,11 @@ variable "region" {
 }
 
 variable "outscale_access_key" {
-  default = "EGMZ6XJACV1ASVP5Q7A4"
+  default = ""
 }
 
 variable "outscale_secret_key" {
-  default = "Q2O7Z1PF6YJ0POQQJ3NH5LXDPDMZCMDEMEX4I0QW"
+  default = ""
 }
 
 variable "vpc_ip_range" {
